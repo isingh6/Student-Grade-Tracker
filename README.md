@@ -1,4 +1,5 @@
 The Student Grade Tracker is a command-line application designed to assist educators, administrators, or students in managing and analyzing academic performance. It offers features such as inputting grades for multiple students across various subjects, calculating average grades, and generating summary reports with key statistical information.
+
 Key Features:
 Input Grades: Allows users to input grades for each student across multiple subjects.
 Calculate Averages: Computes the average grade for each student based on entered grades.
