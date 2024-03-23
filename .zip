@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_SUBJECTS 5
+#define MAX_STUDENTS 10
+#define MAX_NAME_LENGTH 50
+
+// Struct to represent a student
+typedef struct {
+    char name[MAX_NAME_LENGTH];
+    float grades[MAX_SUBJECTS];
+    float averageGrade;
+} Student;
+
+// Function to input grades for a student
+void inputGrades(Student *student, int numSubjects) {
+    printf("Enter grades for %s:\n", student->name);
+    for (int i = 0; i < numSubjects; i++) {
+        printf("Enter grade for Subject %d: ", i + 1);
+        scanf("%f", &student->grades[i]);
+    }
+}
+
+// Function to calculate the average grade for a student
+void calculateAverage(Student *student, int numSubjects) {
+    float sum = 0;
+    for (int i = 0; i < numSubjects; i++) {
+        sum += student->grades[i];
+    }
+    student->averageGrade = sum / numSubjects;
+}
+
+// Function to display student grades summary
+void displaySummary(Student students[], int numStudents, int numSubjects) {
+    printf("\nSummary:\n");
+    for (int i = 0; i < numStudents; i++) {
+        printf("Student: %s\n", students[i].name);
+        printf("Average Grade: %.2f\n", students[i].averageGrade);
+    }
+}
+
+int main() {
+    int numStudents, numSubjects;
+    printf("Enter the number of students: ");
+    scanf("%d", &numStudents);
+    printf("Enter the number of subjects: ");
+    scanf("%d", &numSubjects);
+
+    if (numStudents > MAX_STUDENTS || numSubjects > MAX_SUBJECTS) {
+        printf("Exceeded maximum limit for students or subjects.\n");
+        return 1;
+    }
+
+    Student students[MAX_STUDENTS];
+
+    for (int i = 0; i < numStudents; i++) {
+        printf("Enter name of Student %d: ", i + 1);
+        scanf("%s", students[i].name);
+        inputGrades(&students[i], numSubjects);
+        calculateAverage(&students[i], numSubjects);
+    }
+
+    displaySummary(students, numStudents, numSubjects);
+
+    return 0;
+}
